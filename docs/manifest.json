@@ -1,7 +1,7 @@
 {
   "short_name": "CaGer",
   "name": "Catan Generator",
-  "start_url": "/catan/",
+  "start_url": "/catan/index.html",
   "display": "standalone",
   "icons": [
     {
