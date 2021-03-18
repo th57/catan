@@ -32,5 +32,6 @@ td {
   margin: 10px;
 }
 .dice {
-  width: 40%;
+  width: 30%;
+  max-width: 200px;
 }
