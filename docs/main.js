@@ -168,8 +168,14 @@ function viewScreen(kindMap, numberMap) {
   for (let i = 0; i < kindMap.length; i++) {
     let array = [];
     for (let j = 0; j < kindMap[i].length; j++) {
-      var target = document.getElementById(++screenId);
-      target.innerHTML = kindName[kindMap[i][j]] + ":" + numberMap[i][j];
+      const target = document.getElementById(++screenId);
+      let htmlStr = kindName[kindMap[i][j]];
+      htmlStr += "<br>";
+      if (numberMap[i][j] < 10) {
+        htmlStr += "0";
+      }
+      htmlStr += numberMap[i][j];
+      target.innerHTML = htmlStr;
 
       // reset
       target.classList.remove("bg-yellow");

@@ -25,7 +25,8 @@ button:hover {
 
 td {
   width: 100px;
-  text-align: left;
+  text-align: center;
+  border-radius: 3px;
 }
 
 .dice-area {
