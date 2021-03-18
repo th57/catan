@@ -35,3 +35,25 @@ td {
   width: 30%;
   max-width: 200px;
 }
+
+.bg-yellow {
+  background-color: yellow;
+}
+.bg-green {
+  background-color: green;
+}
+.bg-yellowgreen {
+  background-color: yellowgreen;
+}
+.bg-orange {
+  background-color: orange;
+}
+.bg-blue {
+  background-color: blue;
+}
+.bg-red {
+  background-color: red;
+}
+.bg-none {
+  background-color: transparent;
+}

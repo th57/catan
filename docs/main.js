@@ -137,8 +137,40 @@ function viewScreen(kindMap, numberMap) {
   for (let i = 0; i < kindMap.length; i++) {
     let array = [];
     for (let j = 0; j < kindMap[i].length; j++) {
-      document.getElementById(++screenId).innerHTML =
-        kindName[kindMap[i][j]] + ":" + numberMap[i][j];
+      var target = document.getElementById(++screenId);
+      target.innerHTML = kindName[kindMap[i][j]] + ":" + numberMap[i][j];
+
+      // reset
+      target.classList.remove("bg-yellow");
+      target.classList.remove("bg-green");
+      target.classList.remove("bg-yellowgreen");
+      target.classList.remove("bg-blue");
+      target.classList.remove("bg-orange");
+      target.classList.remove("bg-red");
+      target.classList.remove("bg-none");
+
+      switch (kindMap[i][j]) {
+        case 0:
+          target.classList.add("bg-yellow");
+          break;
+        case 1:
+          target.classList.add("bg-green");
+          break;
+        case 2:
+          target.classList.add("bg-yellowgreen");
+          break;
+        case 3:
+          target.classList.add("bg-orange");
+          break;
+        case 4:
+          target.classList.add("bg-blue");
+          break;
+        case 5:
+          target.classList.add("bg-red");
+          break;
+        default:
+          target.classList.add("bg-none");
+      }
     }
   }
 }
