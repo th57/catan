@@ -23,8 +23,14 @@ const rootNumberMap = [
 function diceroll() {
   const random1 = Math.floor(Math.random() * 6 + 1);
   const random2 = Math.floor(Math.random() * 6 + 1);
-  document.getElementById("dice-1").src = "./assets/" + random1 + ".png";
-  document.getElementById("dice-2").src = "./assets/" + random2 + ".png";
+  const dice1: HTMLInputElement = <HTMLInputElement>(
+    document.getElementById("dice-1")
+  );
+  dice1.src = "./assets/" + random1 + ".png";
+  const dice2: HTMLInputElement = <HTMLInputElement>(
+    document.getElementById("dice-2")
+  );
+  dice2.src = "./assets/" + random2 + ".png";
 }
 
 /* マップ生成 */
@@ -36,7 +42,7 @@ function generate() {
   let isGenerating = true;
   while (isGenerating) {
     shuffleKindMap(kindCount, kindMap, numberMap);
-    if (kindGenerateSucceed(kindMap)) {
+    if (kindGenerateSucceed()) {
       isGenerating = false;
     }
   }
@@ -55,14 +61,18 @@ function generate() {
   viewScreen(kindMap, numberMap);
 }
 
-function kindGenerateSucceed(kindMap) {
+function kindGenerateSucceed() {
   // check line
 
   return true;
 }
 
 /* 種別をシャッフルする */
-function shuffleKindMap(kindCount, kindMap, numberMap) {
+function shuffleKindMap(
+  kindCount: number[],
+  kindMap: number[][],
+  numberMap: number[][]
+) {
   // 砂漠入替準備
   let desertPositionX = 0;
   let desertPositionY = 0;
@@ -97,7 +107,9 @@ function shuffleKindMap(kindCount, kindMap, numberMap) {
   }
 
   // 砂漠ランダム設定か
-  const desertCheckbox = document.getElementById("check-desert");
+  const desertCheckbox: HTMLInputElement = <HTMLInputElement>(
+    document.getElementById("check-desert")
+  );
   if (desertCheckbox.checked) {
     // 砂漠の数値を0に
     const wNum = numberMap[2][2];
@@ -112,7 +124,7 @@ function shuffleKindMap(kindCount, kindMap, numberMap) {
 }
 
 /* 番号をシャッフルする */
-function shuffleNumberMap(numberMap) {
+function shuffleNumberMap(numberMap: number[][]) {
   for (let i = 0; i < numberMap.length; i++) {
     for (let j = 0; j < numberMap[i].length; j++) {
       // replace logic
@@ -157,11 +169,15 @@ function shuffleNumberMap(numberMap) {
 }
 
 /* 画面へ埋め込み */
-function viewScreen(kindMap, numberMap) {
+function viewScreen(kindMap: number[][], numberMap: number[][]) {
   let screenId = 0;
   for (let i = 0; i < kindMap.length; i++) {
     for (let j = 0; j < kindMap[i].length; j++) {
-      const target = document.getElementById(++screenId);
+      const target = document.getElementById(`${++screenId}`);
+      if (target == null) {
+        // skip
+        return;
+      }
 
       // view text
       let htmlStr = kindName[kindMap[i][j]];
@@ -209,37 +225,10 @@ function viewScreen(kindMap, numberMap) {
 }
 
 /* 2d array deep copy */
-function copyMatrix(base) {
+function copyMatrix(base: number[][]) {
   const result = [];
   for (const line of base) {
     result.push([...line]);
   }
   return result;
 }
-
-/* for debug */
-// function viewMap(kindMap, numberMap) {
-//   console.log("***** 生成マップ *****");
-//   for (let i = 0; i < kindMap.length; i++) {
-//     let array = [];
-//     for (let j = 0; j < kindMap[i].length; j++) {
-//       array.push(kindName[kindMap[i][j]] + ":" + numberMap[i][j]);
-//     }
-//     console.log(array);
-//     console.log("*******************");
-//   }
-// }
-// function viewKindNameMap(kindMap) {
-//   kindMap.forEach(function (row) {
-//     let array = [];
-//     row.forEach(function (value) {
-//       array.push(kindName[value]);
-//     });
-//     console.log(array);
-//   });
-// }
-// function viewNumberMap(numberMap) {
-//   numberMap.forEach(function (row) {
-//     console.log(row);
-//   });
-// }
