@@ -4,13 +4,23 @@ body {
 
 hr {
   border-style:dashed;
-  border-color: blue;
+  border-color:#67c5ff;
 }
 
 button {
+  width: 50%;
   margin: 10px;
-  padding: 10px;
-
+  display: inline-block;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  color: #67c5ff;
+  border: solid 2px #67c5ff;
+  border-radius: 3px;
+  transition: .4s;
+}
+button:hover {
+  background: #67c5ff;
+  color: white;
 }
 
 td {
