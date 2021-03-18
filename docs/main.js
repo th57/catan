@@ -29,7 +29,14 @@ function generate() {
   let kindMap = copyMatrix(rootKindMap);
   let numberMap = copyMatrix(rootNumberMap);
 
-  shuffleKindMap(kindCount, kindMap, numberMap);
+  let isGenerating = true;
+  while (isGenerating) {
+    shuffleKindMap(kindCount, kindMap, numberMap);
+    if (kindGenerateSucceed(kindMap)) {
+      isGenerating = false;
+    }
+  }
+
   const random = Math.floor(Math.random() * 4);
   // console.log(random);
   if (random == 1 || random == 3) {
@@ -42,11 +49,16 @@ function generate() {
     numberMap.reverse();
   }
 
-  console.log("***** 生成マップ *****");
-  viewMap(kindMap, numberMap);
-  console.log("*******************");
+  // for debug
+  // viewMap(kindMap, numberMap);
 
   viewScreen(kindMap, numberMap);
+}
+
+function kindGenerateSucceed(kindMap) {
+  // check line
+
+  return true;
 }
 
 function shuffleNumberMap(numberMap) {
@@ -97,11 +109,19 @@ function shuffleKindMap(kindCount, kindMap, numberMap) {
   let desertPositionX = 0;
   let desertPositionY = 0;
 
+  let beforeKind = -1;
   for (let i = 0; i < kindMap.length; i++) {
     for (let j = 0; j < kindMap[i].length; j++) {
       let continued = true;
       while (continued) {
         const random = Math.floor(Math.random() * 6);
+
+        if (random === beforeKind) {
+          // console.log("retry!");
+          continue;
+        }
+        beforeKind = random;
+
         if (kindCount[random] > 0) {
           kindMap[i][j] = random;
           kindCount[random] -= 1;
@@ -132,12 +152,14 @@ function shuffleKindMap(kindCount, kindMap, numberMap) {
 }
 
 function viewMap(kindMap, numberMap) {
+  console.log("***** 生成マップ *****");
   for (let i = 0; i < kindMap.length; i++) {
     let array = [];
     for (let j = 0; j < kindMap[i].length; j++) {
       array.push(kindName[kindMap[i][j]] + ":" + numberMap[i][j]);
     }
     console.log(array);
+    console.log("*******************");
   }
 }
 
