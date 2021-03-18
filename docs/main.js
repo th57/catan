@@ -20,8 +20,8 @@ const rootNumberMap = [
 function diceroll() {
   const random1 = Math.floor(Math.random() * 6 + 1);
   const random2 = Math.floor(Math.random() * 6 + 1);
-  document.getElementById("dice-1").src = "assets/" + random1 + ".png";
-  document.getElementById("dice-2").src = "assets/" + random2 + ".png";
+  document.getElementById("dice-1").src = "./assets/" + random1 + ".png";
+  document.getElementById("dice-2").src = "./assets/" + random2 + ".png";
 }
 
 function generate() {
