@@ -1,0 +1,26 @@
+body {
+  text-align: center;
+}
+
+hr {
+  border-style:dashed;
+  border-color: blue;
+}
+
+button {
+  margin: 10px;
+  padding: 10px;
+
+}
+
+td {
+  width: 100px;
+  text-align: left;
+}
+
+.dice-area {
+  margin: 10px;
+}
+.dice {
+  width: 50px;
+}

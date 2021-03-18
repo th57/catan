@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catan Generator</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>カタンやろうよ</h1>
+  <hr>
+  <h2>ダイスロール</h2>
+  <button onclick="diceroll()">運命！</button>
+  <div class="dice-area"><img class="dice" id="dice-1" src="assets/1.png" /> <img class="dice" id="dice-2" src="assets/1.png" /></div>
+  <hr>
+  <h2>マップ作成</h2>
+  <button onclick="generate()">生成！</button>
+  <table>
+    <tr><td></td><td></td><td id="1">01</td><td></td><td id="2">02</td><td></td><td id="3">03</td><td></td><td></td></tr>
+    <tr><td></td><td id="4">04</td><td></td><td id="5">05</td><td></td><td id="6">06</td><td></td><td id="7">07</td><td></td></tr>
+    <tr><td id="8">08</td><td></td><td id="9">09</td><td></td><td id="10">10</td><td></td><td id="11">11</td><td></td><td id="12">12</td></tr>
+    <tr><td></td><td id="13">13</td><td></td><td id="14">14</td><td></td><td id="15">15</td><td></td><td id="16">16</td><td></td></tr>
+    <tr><td></td><td></td><td id="17">17</td><td></td><td id="18">18</td><td></td><td id="19">19</td><td></td><td></td></tr>
+  </table>
+
+  <script src="main.js"></script>
+</body>
+</html>
