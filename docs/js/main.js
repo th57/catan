@@ -1,6 +1,8 @@
-const numberCount = [0, 0, 1, 2, 2, 2, 2, 0, 2, 2, 2, 2, 1];
+// 画面表示名
 const kindName = ["砂漠", "森林", "牧草", "麦畑", "山地", "丘陵"];
 
+// 盤面構成情報
+const numberCount = [0, 0, 1, 2, 2, 2, 2, 0, 2, 2, 2, 2, 1];
 const rootKindCount = [1, 4, 4, 4, 3, 3, 3];
 const rootKindMap = [
   [1, 2, 2],
@@ -17,6 +19,7 @@ const rootNumberMap = [
   [8, 4, 11],
 ];
 
+/* ダイスを振る */
 function diceroll() {
   const random1 = Math.floor(Math.random() * 6 + 1);
   const random2 = Math.floor(Math.random() * 6 + 1);
@@ -24,6 +27,7 @@ function diceroll() {
   document.getElementById("dice-2").src = "./assets/" + random2 + ".png";
 }
 
+/* マップ生成 */
 function generate() {
   let kindCount = rootKindCount.slice();
   let kindMap = copyMatrix(rootKindMap);
@@ -38,7 +42,6 @@ function generate() {
   }
 
   const random = Math.floor(Math.random() * 4);
-  // console.log(random);
   if (random == 1 || random == 3) {
     kindMap.reverse();
   }
@@ -49,9 +52,6 @@ function generate() {
     numberMap.reverse();
   }
 
-  // for debug
-  // viewMap(kindMap, numberMap);
-
   viewScreen(kindMap, numberMap);
 }
 
@@ -61,10 +61,61 @@ function kindGenerateSucceed(kindMap) {
   return true;
 }
 
+/* 種別をシャッフルする */
+function shuffleKindMap(kindCount, kindMap, numberMap) {
+  // 砂漠入替準備
+  let desertPositionX = 0;
+  let desertPositionY = 0;
+
+  // 種別を配置
+  let beforeKind = -1;
+  for (let i = 0; i < kindMap.length; i++) {
+    for (let j = 0; j < kindMap[i].length; j++) {
+      let continued = true;
+      while (continued) {
+        const random = Math.floor(Math.random() * 6);
+
+        // 前回と同じ出目の場合は振り直し
+        if (random === beforeKind) {
+          continue;
+        }
+        beforeKind = random;
+
+        // まだ設置するものが残っているか
+        if (kindCount[random] > 0) {
+          kindMap[i][j] = random;
+          kindCount[random] -= 1;
+          continued = false;
+
+          if (random == 0) {
+            desertPositionX = i;
+            desertPositionY = j;
+          }
+        }
+      }
+    }
+  }
+
+  // 砂漠ランダム設定か
+  const desertCheckbox = document.getElementById("check-desert");
+  if (desertCheckbox.checked) {
+    // 砂漠の数値を0に
+    const wNum = numberMap[2][2];
+    numberMap[2][2] = numberMap[desertPositionX][desertPositionY];
+    numberMap[desertPositionX][desertPositionY] = wNum;
+  } else {
+    // 種別で砂漠を中心に
+    const wNum = kindMap[2][2];
+    kindMap[2][2] = kindMap[desertPositionX][desertPositionY];
+    kindMap[desertPositionX][desertPositionY] = wNum;
+  }
+}
+
+/* 番号をシャッフルする */
 function shuffleNumberMap(numberMap) {
   for (let i = 0; i < numberMap.length; i++) {
     for (let j = 0; j < numberMap[i].length; j++) {
-      // replace
+      // replace logic
       const num = numberMap[i][j];
       switch (num) {
         case 2:
@@ -105,70 +156,14 @@ function shuffleNumberMap(numberMap) {
   }
 }
 
-function shuffleKindMap(kindCount, kindMap, numberMap) {
-  let desertPositionX = 0;
-  let desertPositionY = 0;
-
-  let beforeKind = -1;
-  for (let i = 0; i < kindMap.length; i++) {
-    for (let j = 0; j < kindMap[i].length; j++) {
-      let continued = true;
-      while (continued) {
-        const random = Math.floor(Math.random() * 6);
-
-        if (random === beforeKind) {
-          // console.log("retry!");
-          continue;
-        }
-        beforeKind = random;
-
-        if (kindCount[random] > 0) {
-          kindMap[i][j] = random;
-          kindCount[random] -= 1;
-          continued = false;
-
-          if (random == 0) {
-            desertPositionX = i;
-            desertPositionY = j;
-          }
-        }
-      }
-    }
-  }
-
-  // 砂漠ランダム？
-  const checkbox = document.getElementById("check-desert");
-  if (checkbox.checked) {
-    // 砂漠の数値を0に
-    const wNum = numberMap[2][2];
-    numberMap[2][2] = numberMap[desertPositionX][desertPositionY];
-    numberMap[desertPositionX][desertPositionY] = wNum;
-  } else {
-    // 砂漠を中心に
-    const wNum = kindMap[2][2];
-    kindMap[2][2] = kindMap[desertPositionX][desertPositionY];
-    kindMap[desertPositionX][desertPositionY] = wNum;
-  }
-}
-
-function viewMap(kindMap, numberMap) {
-  console.log("***** 生成マップ *****");
-  for (let i = 0; i < kindMap.length; i++) {
-    let array = [];
-    for (let j = 0; j < kindMap[i].length; j++) {
-      array.push(kindName[kindMap[i][j]] + ":" + numberMap[i][j]);
-    }
-    console.log(array);
-    console.log("*******************");
-  }
-}
-
+/* 画面へ埋め込み */
 function viewScreen(kindMap, numberMap) {
   let screenId = 0;
   for (let i = 0; i < kindMap.length; i++) {
-    let array = [];
     for (let j = 0; j < kindMap[i].length; j++) {
       const target = document.getElementById(++screenId);
+
+      // view text
       let htmlStr = kindName[kindMap[i][j]];
       htmlStr += "<br>";
       if (numberMap[i][j] < 10) {
@@ -177,7 +172,7 @@ function viewScreen(kindMap, numberMap) {
       htmlStr += numberMap[i][j];
       target.innerHTML = htmlStr;
 
-      // reset
+      // backgroud-color reset
       target.classList.remove("bg-yellow");
       target.classList.remove("bg-green");
       target.classList.remove("bg-yellowgreen");
@@ -186,6 +181,7 @@ function viewScreen(kindMap, numberMap) {
       target.classList.remove("bg-red");
       target.classList.remove("bg-none");
 
+      // background-color add
       switch (kindMap[i][j]) {
         case 0:
           target.classList.add("bg-yellow");
@@ -212,6 +208,27 @@ function viewScreen(kindMap, numberMap) {
   }
 }
 
+/* 2d array deep copy */
+function copyMatrix(base) {
+  const result = [];
+  for (const line of base) {
+    result.push([...line]);
+  }
+  return result;
+}
+
+/* for debug */
+// function viewMap(kindMap, numberMap) {
+//   console.log("***** 生成マップ *****");
+//   for (let i = 0; i < kindMap.length; i++) {
+//     let array = [];
+//     for (let j = 0; j < kindMap[i].length; j++) {
+//       array.push(kindName[kindMap[i][j]] + ":" + numberMap[i][j]);
+//     }
+//     console.log(array);
+//     console.log("*******************");
+//   }
+// }
 // function viewKindNameMap(kindMap) {
 //   kindMap.forEach(function (row) {
 //     let array = [];
@@ -221,17 +238,8 @@ function viewScreen(kindMap, numberMap) {
 //     console.log(array);
 //   });
 // }
-
 // function viewNumberMap(numberMap) {
 //   numberMap.forEach(function (row) {
 //     console.log(row);
 //   });
 // }
-
-function copyMatrix(base) {
-  const result = [];
-  for (const line of base) {
-    result.push([...line]);
-  }
-  return result;
-}

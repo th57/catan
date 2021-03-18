@@ -1,5 +1,18 @@
+@charset "UTF-8";
+
+/*** common ***/
+
 body {
+  font-family: 'DotGothic16', sans-serif;
   text-align: center;
+}
+
+h1 {
+  margin: 10px;
+
+}
+h2 {
+  margin-top: 10px;
 }
 
 hr {
@@ -9,25 +22,21 @@ hr {
 
 button {
   width: 50%;
-  margin: 10px;
   display: inline-block;
+  margin: 10px;
   padding: 0.5em 1em;
-  text-decoration: none;
   color: #67c5ff;
+  text-decoration: none;
   border: solid 2px #67c5ff;
   border-radius: 3px;
   transition: .4s;
 }
 button:hover {
-  background: #67c5ff;
   color: white;
+  background-color: #67c5ff;
 }
 
-td {
-  width: 100px;
-  text-align: center;
-  border-radius: 3px;
-}
+/*** dice ***/
 
 .dice-area {
   margin: 10px;
@@ -35,6 +44,14 @@ td {
 .dice {
   width: 30%;
   max-width: 200px;
+}
+
+/*** map ***/
+
+td {
+  width: 100px;
+  text-align: center;
+  border-radius: 3px;
 }
 
 .bg-yellow {
