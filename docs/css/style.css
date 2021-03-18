@@ -48,6 +48,11 @@ button:hover {
 
 /*** map ***/
 
+table {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
 td {
   width: 100px;
   text-align: center;
