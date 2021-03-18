@@ -29,7 +29,7 @@ function generate() {
   let kindMap = copyMatrix(rootKindMap);
   let numberMap = copyMatrix(rootNumberMap);
 
-  shuffleKindMap(kindCount, kindMap);
+  shuffleKindMap(kindCount, kindMap, numberMap);
   const random = Math.floor(Math.random() * 4);
   // console.log(random);
   if (random == 1 || random == 3) {
@@ -93,7 +93,7 @@ function shuffleNumberMap(numberMap) {
   }
 }
 
-function shuffleKindMap(kindCount, kindMap) {
+function shuffleKindMap(kindCount, kindMap, numberMap) {
   let desertPositionX = 0;
   let desertPositionY = 0;
 
@@ -116,10 +116,19 @@ function shuffleKindMap(kindCount, kindMap) {
     }
   }
 
-  // 砂漠を中心に
-  const wNum = kindMap[2][2];
-  kindMap[2][2] = kindMap[desertPositionX][desertPositionY];
-  kindMap[desertPositionX][desertPositionY] = wNum;
+  // 砂漠ランダム？
+  const checkbox = document.getElementById("check-desert");
+  if (checkbox.checked) {
+    // 砂漠の数値を0に
+    const wNum = numberMap[2][2];
+    numberMap[2][2] = numberMap[desertPositionX][desertPositionY];
+    numberMap[desertPositionX][desertPositionY] = wNum;
+  } else {
+    // 砂漠を中心に
+    const wNum = kindMap[2][2];
+    kindMap[2][2] = kindMap[desertPositionX][desertPositionY];
+    kindMap[desertPositionX][desertPositionY] = wNum;
+  }
 }
 
 function viewMap(kindMap, numberMap) {
