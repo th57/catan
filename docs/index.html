@@ -6,8 +6,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <meta name="application-name" content="Catan Generator">
+  <meta name="mobile-web-app-capable" content="yes">
+
   <title>Catan Generator</title>
 
+  <link rel="manifest" crossorigin="use-credentials">
   <link rel="icon" type="image/png" href="./assets/catan.ico" />
   <link rel="apple-touch-icon" href="./assets/catan.png">
 
@@ -25,7 +29,7 @@
   <hr>
 
   <h2>ダイスロール</h2>
-  <button onclick="diceroll()">運命！</button>
+  <button onclick="diceroll()">Go！</button>
   <div class="dice-area">
     <img class="dice" id="dice-1" src="./assets/1.png" />
     <img class="dice" id="dice-2" src="./assets/1.png" />
@@ -35,7 +39,7 @@
 
   <h2>マップ作成</h2>
   <input id="check-desert" type="checkbox" value="砂漠ランダム">砂漠ランダム<br>
-  <button onclick="generate()">生成！</button>
+  <button onclick="generate()">Generate！</button>
   <table>
     <tr><td></td><td></td><td id="1"></td><td></td><td id="2"></td><td></td><td id="3"></td><td></td><td></td></tr>
     <tr><td></td><td id="4"></td><td></td><td id="5"></td><td></td><td id="6"></td><td></td><td id="7"></td><td></td></tr>

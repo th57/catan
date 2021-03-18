@@ -1,0 +1,13 @@
+{
+  "short_name": "CaGer",
+  "name": "Catan Generator",
+  "start_url": "/",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "./assets/catan.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}
