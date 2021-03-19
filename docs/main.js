@@ -8,7 +8,7 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from) {
 var kindName = ["砂漠", "森林", "牧草", "麦畑", "山地", "丘陵"];
 // 盤面構成情報
 var numberCount = [0, 0, 1, 2, 2, 2, 2, 0, 2, 2, 2, 2, 1];
-var rootKindCount = [1, 4, 4, 4, 3, 3, 3];
+var rootKindCount = [1, 4, 4, 4, 3, 3];
 var rootKindMap = [
     [1, 2, 2],
     [3, 4, 3, 1],
@@ -190,7 +190,7 @@ function viewScreen(kindMap, numberMap) {
                     target.classList.add("bg-orange");
                     break;
                 case 4:
-                    target.classList.add("bg-blue");
+                    target.classList.add("bg-cyan");
                     break;
                 case 5:
                     target.classList.add("bg-red");
@@ -209,5 +209,150 @@ function copyMatrix(base) {
         result.push(__spreadArray([], line));
     }
     return result;
+}
+/* Sea */
+// 画面表示名
+var kindNameSea = ["海域", "森林", "牧草", "麦畑", "山地", "丘陵"];
+// 盤面構成情報
+var rootKindCountSea = [19, 5, 5, 5, 4, 4];
+var rootKindMapSea = [
+    [0, 0, 0, 0, 0],
+    [0, 1, 2, 3, 4, 0],
+    [0, 1, 2, 3, 4, 5, 0],
+    [0, 1, 2, 3, 4, 5],
+    [0, 1, 2, 3, 4, 5, 0],
+    [0, 1, 2, 3, 5, 0],
+    [0, 0, 0, 0, 0],
+];
+var rootNumberCountSea = [0, 0, 1, 3, 3, 3, 2, 0, 2, 3, 3, 2, 1];
+var rootNumberMapSea = [
+    [0, 0, 0, 0, 0],
+    [0, 6, 3, 8, 3, 0],
+    [0, 4, 2, 4, 5, 10, 0],
+    [0, 5, 9, 0, 6, 0],
+    [0, 9, 10, 11, 3, 12, 0],
+    [0, 8, 4, 11, 10, 0],
+    [0, 0, 0, 0, 0],
+];
+/* マップ生成 */
+function generateSea() {
+    var kindCountSea = rootKindCountSea.slice();
+    var kindMapSea = copyMatrix(rootKindMapSea);
+    var numberCountSea = rootNumberCountSea.slice();
+    var numberMapSea = copyMatrix(rootNumberMapSea);
+    shuffleKindMapSea(kindCountSea, kindMapSea);
+    shuffleNumberMapSea(numberCountSea, numberMapSea, kindMapSea);
+    viewScreenSea(kindMapSea, numberMapSea);
+}
+/* 画面へ埋め込み */
+function viewScreenSea(kindMapSea, numberMapSea) {
+    var screenId = 100;
+    for (var i = 0; i < kindMapSea.length; i++) {
+        for (var j = 0; j < kindMapSea[i].length; j++) {
+            var target = document.getElementById("" + ++screenId);
+            if (target == null) {
+                // skip
+                return;
+            }
+            // view text
+            var htmlStr = kindNameSea[kindMapSea[i][j]];
+            htmlStr += "<br>";
+            if (numberMapSea[i][j] < 10) {
+                htmlStr += "0";
+            }
+            htmlStr += numberMapSea[i][j];
+            target.innerHTML = htmlStr;
+            // backgroud-color reset
+            target.classList.remove("bg-blue");
+            target.classList.remove("bg-green");
+            target.classList.remove("bg-yellowgreen");
+            target.classList.remove("bg-orange");
+            target.classList.remove("bg-cyan");
+            target.classList.remove("bg-red");
+            target.classList.remove("bg-none");
+            // background-color add
+            switch (kindMapSea[i][j]) {
+                case 0:
+                    target.classList.add("bg-blue");
+                    break;
+                case 1:
+                    target.classList.add("bg-green");
+                    break;
+                case 2:
+                    target.classList.add("bg-yellowgreen");
+                    break;
+                case 3:
+                    target.classList.add("bg-orange");
+                    break;
+                case 4:
+                    target.classList.add("bg-cyan");
+                    break;
+                case 5:
+                    target.classList.add("bg-red");
+                    break;
+                default:
+                    target.classList.add("bg-none");
+            }
+        }
+    }
+}
+/* 種別をシャッフルする */
+function shuffleKindMapSea(kindCountSea, kindMapSea) {
+    // 種別を配置
+    var beforeKind = -1;
+    for (var i = 0; i < kindMapSea.length; i++) {
+        for (var j = 0; j < kindMapSea[i].length; j++) {
+            var continued = true;
+            while (continued) {
+                var wRandom = Math.random() * 9 - 3;
+                if (wRandom < 0) {
+                    wRandom = 0;
+                }
+                var random = Math.floor(wRandom);
+                // 前回と同じ出目の場合は振り直し
+                if (random === beforeKind) {
+                    continue;
+                }
+                beforeKind = random;
+                // まだ設置するものが残っているか
+                if (kindCountSea[random] > 0) {
+                    kindMapSea[i][j] = random;
+                    kindCountSea[random] -= 1;
+                    continued = false;
+                }
+            }
+        }
+    }
+}
+/* 種別をシャッフルする */
+function shuffleNumberMapSea(numberCountSea, numberMapSea, kindMapSea) {
+    // 種別を配置
+    var beforeNumber = -1;
+    for (var i = 0; i < numberMapSea.length; i++) {
+        for (var j = 0; j < numberMapSea[i].length; j++) {
+            // 海だったら0固定
+            if (kindMapSea[i][j] == 0) {
+                numberMapSea[i][j] = 0;
+                continue;
+            }
+            console.log(numberCountSea);
+            var continued = true;
+            while (continued) {
+                var wRandom = Math.random() * 13;
+                var random = Math.floor(wRandom);
+                // 0か前回と同じ出目の場合は振り直し
+                if (random < 2 || random === beforeNumber) {
+                    continue;
+                }
+                beforeNumber = random;
+                // まだ設置するものが残っているか
+                if (numberCountSea[random] > 0) {
+                    numberMapSea[i][j] = random;
+                    numberCountSea[random] -= 1;
+                    break;
+                }
+            }
+        }
+    }
 }
 //# sourceMappingURL=main.js.map

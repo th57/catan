@@ -71,8 +71,11 @@ td {
 .bg-orange {
   background-color: orange;
 }
-.bg-blue {
+.bg-cyan {
   background-color: cyan;
+}
+.bg-blue {
+  background-color: blue;
 }
 .bg-red {
   background-color: red;
