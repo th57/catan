@@ -178,8 +178,8 @@ function viewScreen(kindMap, numberMap) {
             target.classList.remove("bg-yellow");
             target.classList.remove("bg-green");
             target.classList.remove("bg-yellowgreen");
-            target.classList.remove("bg-blue");
             target.classList.remove("bg-orange");
+            target.classList.remove("bg-cyan");
             target.classList.remove("bg-red");
             target.classList.remove("bg-none");
             // background-color add
