@@ -420,3 +420,32 @@ function playSound(filename: string, volume: number, looped: boolean) {
   audio.loop = looped;
   audio.play();
 }
+
+function stopSound(filename: string) {
+  //var audio = new Audio("./assets/" + filename + ".mp3");
+  const audio: HTMLAudioElement = <HTMLAudioElement>(
+    document.getElementById(filename)
+  );
+  audio.pause();
+  audio.currentTime = 0;
+}
+
+function playBGM(filename: string, volume: number, looped: boolean) {
+  const target = document.getElementById("button-bgm");
+  if (target == null) {
+    // skip
+    return;
+  }
+
+  if (target.innerHTML == "BGM再生") {
+    target.innerHTML = "BGM停止";
+    target.classList.remove("bg-none");
+    target.classList.add("bg-orange");
+    playSound(filename, volume, looped);
+  } else {
+    target.innerHTML = "BGM再生";
+    target.classList.remove("bg-orange");
+    target.classList.add("bg-none");
+    stopSound(filename);
+  }
+}
