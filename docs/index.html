@@ -37,6 +37,14 @@
 
   <hr>
 
+  <h2>盛り上げサウンド</h2>
+  <button onclick="playSound('s_start', 1, false)">はじめ</button>
+  <button onclick="playSound('bgm_main', 0.3, true)">ゲーム中BGM</button>
+  <button onclick="playSound('s_finish', 1, false)">支配者決定</button>
+  <button onclick="playSound('s_end', 1, false)">おわり</button>
+
+  <hr>
+
   <h2>通常マップ作成</h2>
   <input id="check-desert" type="checkbox" value="砂漠ランダム">砂漠ランダム<br>
   <button onclick="generate()">Generate！</button>

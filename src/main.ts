@@ -31,6 +31,16 @@ function diceroll() {
     document.getElementById("dice-2")
   );
   dice2.src = "./assets/" + random2 + ".png";
+
+  const sum = random1 + random2;
+
+  // 差し替え用
+  // if (sum == 7) {
+  //   playSound("s_hit_7", 1, false);
+  //   return;
+  // }
+
+  playSound(`s_${random1 + random2}`, 1, false);
 }
 
 /* マップ生成 */
@@ -399,4 +409,11 @@ function shuffleNumberMapSea(
       }
     }
   }
+}
+
+function playSound(filename: string, volume: number, looped: boolean) {
+  var audio = new Audio("./assets/" + filename + ".mp3");
+  audio.volume = volume;
+  audio.loop = looped;
+  audio.play();
 }

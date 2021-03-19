@@ -31,6 +31,13 @@ function diceroll() {
     dice1.src = "./assets/" + random1 + ".png";
     var dice2 = (document.getElementById("dice-2"));
     dice2.src = "./assets/" + random2 + ".png";
+    var sum = random1 + random2;
+    // 差し替え用
+    // if (sum == 7) {
+    //   playSound("s_hit_7", 1, false);
+    //   return;
+    // }
+    playSound("s_" + (random1 + random2), 1, false);
 }
 /* マップ生成 */
 function generate() {
@@ -354,5 +361,11 @@ function shuffleNumberMapSea(numberCountSea, numberMapSea, kindMapSea) {
             }
         }
     }
+}
+function playSound(filename, volume, looped) {
+    var audio = new Audio("./assets/" + filename + ".mp3");
+    audio.volume = volume;
+    audio.loop = looped;
+    audio.play();
 }
 //# sourceMappingURL=main.js.map
