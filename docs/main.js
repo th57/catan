@@ -370,7 +370,6 @@ function playSound(filename, volume, looped) {
     audio.play();
 }
 function stopSound(filename) {
-    //var audio = new Audio("./assets/" + filename + ".mp3");
     var audio = (document.getElementById(filename));
     audio.pause();
     audio.currentTime = 0;

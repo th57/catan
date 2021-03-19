@@ -422,7 +422,6 @@ function playSound(filename: string, volume: number, looped: boolean) {
 }
 
 function stopSound(filename: string) {
-  //var audio = new Audio("./assets/" + filename + ".mp3");
   const audio: HTMLAudioElement = <HTMLAudioElement>(
     document.getElementById(filename)
   );
