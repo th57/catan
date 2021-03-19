@@ -380,7 +380,8 @@ function playBGM(filename, volume, looped) {
         // skip
         return;
     }
-    if (target.innerHTML == "BGM再生") {
+    var audio = (document.getElementById(filename));
+    if (audio.paused) {
         target.innerHTML = "BGM停止";
         target.classList.remove("bg-none");
         target.classList.add("bg-orange");

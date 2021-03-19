@@ -435,8 +435,11 @@ function playBGM(filename: string, volume: number, looped: boolean) {
     // skip
     return;
   }
+  const audio: HTMLAudioElement = <HTMLAudioElement>(
+    document.getElementById(filename)
+  );
 
-  if (target.innerHTML == "BGM再生") {
+  if (audio.paused) {
     target.innerHTML = "BGM停止";
     target.classList.remove("bg-none");
     target.classList.add("bg-orange");
