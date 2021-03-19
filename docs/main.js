@@ -363,7 +363,8 @@ function shuffleNumberMapSea(numberCountSea, numberMapSea, kindMapSea) {
     }
 }
 function playSound(filename, volume, looped) {
-    var audio = new Audio("./assets/" + filename + ".mp3");
+    //var audio = new Audio("./assets/" + filename + ".mp3");
+    var audio = (document.getElementById(filename));
     audio.volume = volume;
     audio.loop = looped;
     audio.play();

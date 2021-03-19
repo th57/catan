@@ -412,7 +412,10 @@ function shuffleNumberMapSea(
 }
 
 function playSound(filename: string, volume: number, looped: boolean) {
-  var audio = new Audio("./assets/" + filename + ".mp3");
+  //var audio = new Audio("./assets/" + filename + ".mp3");
+  const audio: HTMLAudioElement = <HTMLAudioElement>(
+    document.getElementById(filename)
+  );
   audio.volume = volume;
   audio.loop = looped;
   audio.play();
