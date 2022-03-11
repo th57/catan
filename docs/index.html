@@ -1,125 +1,279 @@
 <!DOCTYPE html>
 <html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="application-name" content="Catan Generator" />
+    <meta name="mobile-web-app-capable" content="yes" />
 
-  <meta name="application-name" content="Catan Generator">
-  <meta name="mobile-web-app-capable" content="yes">
+    <title>Catan Generator</title>
 
-  <title>Catan Generator</title>
+    <link rel="manifest" href="./manifest.json" crossorigin="use-credentials" />
+    <link rel="icon" type="image/png" href="./assets/catan.ico" />
+    <link rel="apple-touch-icon" href="./assets/catan.png" />
 
-  <link rel="manifest" href="./manifest.json" crossorigin="use-credentials">
-  <link rel="icon" type="image/png" href="./assets/catan.ico" />
-  <link rel="apple-touch-icon" href="./assets/catan.png">
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap"
+      rel="stylesheet"
+    />
 
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/ress.min.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
 
-  <link rel="stylesheet" href="./css/ress.min.css">
-  <link rel="stylesheet" href="./css/style.css">
+  <body>
+    <audio id="s_1" preload>
+      <source src="assets/s_1.mp3" type="audio/mp3" />
+    </audio>
+    <audio id="s_2" preload>
+      <source src="assets/s_2.mp3" type="audio/mp3" />
+    </audio>
+    <audio id="s_3" preload>
+      <source src="assets/s_3.mp3" type="audio/mp3" />
+    </audio>
+    <audio id="s_4" preload>
+      <source src="assets/s_4.mp3" type="audio/mp3" />
+    </audio>
+    <audio id="s_5" preload>
+      <source src="assets/s_5.mp3" type="audio/mp3" />
+    </audio>
+    <audio id="s_6" preload>
+      <source src="assets/s_6.mp3" type="audio/mp3" />
+    </audio>
+    <audio id="s_7" preload>
+      <source src="assets/s_7.mp3" type="audio/mp3" />
+    </audio>
+    <audio id="s_8" preload>
+      <source src="assets/s_8.mp3" type="audio/mp3" />
+    </audio>
+    <audio id="s_9" preload>
+      <source src="assets/s_9.mp3" type="audio/mp3" />
+    </audio>
+    <audio id="s_10" preload>
+      <source src="assets/s_10.mp3" type="audio/mp3" />
+    </audio>
+    <audio id="s_11" preload>
+      <source src="assets/s_11.mp3" type="audio/mp3" />
+    </audio>
+    <audio id="s_12" preload>
+      <source src="assets/s_12.mp3" type="audio/mp3" />
+    </audio>
+    <audio id="s_start" preload>
+      <source src="assets/s_start.mp3" type="audio/mp3" />
+    </audio>
+    <audio id="bgm_main" preload>
+      <source src="assets/bgm_main.mp3" type="audio/mp3" />
+    </audio>
+    <audio id="s_finish" preload>
+      <source src="assets/s_finish.mp3" type="audio/mp3" />
+    </audio>
+    <audio id="s_end" preload>
+      <source src="assets/s_end.mp3" type="audio/mp3" />
+    </audio>
 
-</head>
+    <h1>カタンやろうよ</h1>
 
-<body>
+    <hr />
 
-  <audio id="s_1" preload>
-    <source src="assets/s_1.mp3" type="audio/mp3">
-  </audio>
-  <audio id="s_2" preload>
-    <source src="assets/s_2.mp3" type="audio/mp3">
-  </audio>
-  <audio id="s_3" preload>
-    <source src="assets/s_3.mp3" type="audio/mp3">
-  </audio>
-  <audio id="s_4" preload>
-    <source src="assets/s_4.mp3" type="audio/mp3">
-  </audio>
-  <audio id="s_5" preload>
-    <source src="assets/s_5.mp3" type="audio/mp3">
-  </audio>
-  <audio id="s_6" preload>
-    <source src="assets/s_6.mp3" type="audio/mp3">
-  </audio>
-  <audio id="s_7" preload>
-    <source src="assets/s_7.mp3" type="audio/mp3">
-  </audio>
-  <audio id="s_8" preload>
-    <source src="assets/s_8.mp3" type="audio/mp3">
-  </audio>
-  <audio id="s_9" preload>
-    <source src="assets/s_9.mp3" type="audio/mp3">
-  </audio>
-  <audio id="s_10" preload>
-    <source src="assets/s_10.mp3" type="audio/mp3">
-  </audio>
-  <audio id="s_11" preload>
-    <source src="assets/s_11.mp3" type="audio/mp3">
-  </audio>
-  <audio id="s_12" preload>
-    <source src="assets/s_12.mp3" type="audio/mp3">
-  </audio>
-  <audio id="s_start" preload>
-    <source src="assets/s_start.mp3" type="audio/mp3">
-  </audio>
-  <audio id="bgm_main" preload>
-    <source src="assets/bgm_main.mp3" type="audio/mp3">
-  </audio>
-  <audio id="s_finish" preload>
-    <source src="assets/s_finish.mp3" type="audio/mp3">
-  </audio>
-  <audio id="s_end" preload>
-    <source src="assets/s_end.mp3" type="audio/mp3">
-  </audio>
+    <h2>通常マップ作成</h2>
+    <input
+      id="check-desert"
+      type="checkbox"
+      value="砂漠ランダム"
+    />砂漠ランダム<br />
+    <button onclick="generate()">Generate！</button>
+    <table>
+      <tr>
+        <td></td>
+        <td></td>
+        <td id="1"></td>
+        <td></td>
+        <td id="2"></td>
+        <td></td>
+        <td id="3"></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td id="4"></td>
+        <td></td>
+        <td id="5"></td>
+        <td></td>
+        <td id="6"></td>
+        <td></td>
+        <td id="7"></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="8"></td>
+        <td></td>
+        <td id="9"></td>
+        <td></td>
+        <td id="10"></td>
+        <td></td>
+        <td id="11"></td>
+        <td></td>
+        <td id="12"></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td id="13"></td>
+        <td></td>
+        <td id="14"></td>
+        <td></td>
+        <td id="15"></td>
+        <td></td>
+        <td id="16"></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td id="17"></td>
+        <td></td>
+        <td id="18"></td>
+        <td></td>
+        <td id="19"></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
 
-  <h1>カタンやろうよ</h1>
+    <hr />
 
-  <hr>
+    <h2>海マップ作成</h2>
+    <button onclick="generateSea()">Generate！</button>
+    <table>
+      <tr>
+        <td></td>
+        <td></td>
+        <td id="101"></td>
+        <td></td>
+        <td id="102"></td>
+        <td></td>
+        <td id="103"></td>
+        <td></td>
+        <td id="104"></td>
+        <td></td>
+        <td id="105"></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td id="106"></td>
+        <td></td>
+        <td id="107"></td>
+        <td></td>
+        <td id="108"></td>
+        <td></td>
+        <td id="109"></td>
+        <td></td>
+        <td id="110"></td>
+        <td></td>
+        <td id="111"></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="112"></td>
+        <td></td>
+        <td id="113"></td>
+        <td></td>
+        <td id="114"></td>
+        <td></td>
+        <td id="115"></td>
+        <td></td>
+        <td id="116"></td>
+        <td></td>
+        <td id="117"></td>
+        <td></td>
+        <td id="118"></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td id="119"></td>
+        <td></td>
+        <td id="120"></td>
+        <td></td>
+        <td id="121"></td>
+        <td></td>
+        <td id="122"></td>
+        <td></td>
+        <td id="123"></td>
+        <td></td>
+        <td id="124"></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="125"></td>
+        <td></td>
+        <td id="126"></td>
+        <td></td>
+        <td id="127"></td>
+        <td></td>
+        <td id="128"></td>
+        <td></td>
+        <td id="129"></td>
+        <td></td>
+        <td id="130"></td>
+        <td></td>
+        <td id="131"></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td id="132"></td>
+        <td></td>
+        <td id="133"></td>
+        <td></td>
+        <td id="134"></td>
+        <td></td>
+        <td id="135"></td>
+        <td></td>
+        <td id="136"></td>
+        <td></td>
+        <td id="137"></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td id="138"></td>
+        <td></td>
+        <td id="139"></td>
+        <td></td>
+        <td id="140"></td>
+        <td></td>
+        <td id="141"></td>
+        <td></td>
+        <td id="142"></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
 
-  <h2>ダイスロール</h2>
-  <button onclick="diceroll()">Roll！</button>
-  <div class="dice-area">
-    <img class="dice" id="dice-1" src="./assets/1.png" />
-    <img class="dice" id="dice-2" src="./assets/1.png" />
-  </div>
+    <hr />
 
-  <hr>
+    <h2>盛り上げサウンド</h2>
+    <button id="button-bgm" onclick="playBGM('bgm_main', 0.3, true)">
+      BGM再生
+    </button>
+    <button onclick="playSound('s_start', 1, false)">はじめ</button>
+    <button onclick="playSound('s_finish', 1, false)">支配者決定</button>
+    <button onclick="playSound('s_end', 1, false)">おわり</button>
 
-  <h2>盛り上げサウンド</h2>
-  <button id="button-bgm" onclick="playBGM('bgm_main', 0.3, true)">BGM再生</button>
-  <button onclick="playSound('s_start', 1, false)">はじめ</button>
-  <button onclick="playSound('s_finish', 1, false)">支配者決定</button>
-  <button onclick="playSound('s_end', 1, false)">おわり</button>
+    <hr />
 
-  <hr>
+    <h2>ダイスロール</h2>
+    <button onclick="diceroll()">Roll！</button>
+    <div class="dice-area">
+      <img class="dice" id="dice-1" src="./assets/1.png" />
+      <img class="dice" id="dice-2" src="./assets/1.png" />
+    </div>
 
-  <h2>通常マップ作成</h2>
-  <input id="check-desert" type="checkbox" value="砂漠ランダム">砂漠ランダム<br>
-  <button onclick="generate()">Generate！</button>
-  <table>
-    <tr><td></td><td></td><td id="1"></td><td></td><td id="2"></td><td></td><td id="3"></td><td></td><td></td></tr>
-    <tr><td></td><td id="4"></td><td></td><td id="5"></td><td></td><td id="6"></td><td></td><td id="7"></td><td></td></tr>
-    <tr><td id="8"></td><td></td><td id="9"></td><td></td><td id="10"></td><td></td><td id="11"></td><td></td><td id="12"></td></tr>
-    <tr><td></td><td id="13"></td><td></td><td id="14"></td><td></td><td id="15"></td><td></td><td id="16"></td><td></td></tr>
-    <tr><td></td><td></td><td id="17"></td><td></td><td id="18"></td><td></td><td id="19"></td><td></td><td></td></tr>
-  </table>
-
-  <hr>
-
-  <h2>海マップ作成</h2>
-  <button onclick="generateSea()">Generate！</button>
-  <table>
-    <tr><td></td><td></td><td id="101"></td><td></td><td id="102"></td><td></td><td id="103"></td><td></td><td id="104"></td><td></td><td id="105"></td><td></td><td></td></tr>
-    <tr><td></td><td id="106"></td><td></td><td id="107"></td><td></td><td id="108"></td><td></td><td id="109"></td><td></td><td id="110"></td><td></td><td id="111"></td><td></td></tr>
-    <tr><td id="112"></td><td></td><td id="113"></td><td></td><td id="114"></td><td></td><td id="115"></td><td></td><td id="116"></td><td></td><td id="117"></td><td></td><td id="118"></td></tr>
-    <tr><td></td><td id="119"></td><td></td><td id="120"></td><td></td><td id="121"></td><td></td><td id="122"></td><td></td><td id="123"></td><td></td><td id="124"></td><td></td></tr>
-    <tr><td id="125"></td><td></td><td id="126"></td><td></td><td id="127"></td><td></td><td id="128"></td><td></td><td id="129"></td><td></td><td id="130"></td><td></td><td id="131"></td></tr>
-    <tr><td></td><td id="132"></td><td></td><td id="133"></td><td></td><td id="134"></td><td></td><td id="135"></td><td></td><td id="136"></td><td></td><td id="137"></td><td></td></tr>
-    <tr><td></td><td></td><td id="138"></td><td></td><td id="139"></td><td></td><td id="140"></td><td></td><td id="141"></td><td></td><td id="142"></td><td></td><td></td></tr>
-  </table>
-
-  <script src="./main.js"></script>
-</body>
+    <script src="./main.js"></script>
+  </body>
 </html>
